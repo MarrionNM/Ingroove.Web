@@ -10,7 +10,7 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login } = useAuth(); // context sets auth state
+  const { login } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,10 +25,8 @@ const LoginPage = () => {
         return;
       }
 
-      // Save user in context
       login(data.data.user);
 
-      // Redirect based on role
       if (data.data.user.role === "Hub") {
         navigate("/hub");
       } else {
@@ -43,13 +41,24 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-background via-background to-background overflow-hidden">
-      {/* ...same UI code you had for background & form... */}
+    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-background via-background to-background overflow-hidden px-4">
+      {/* Decorative gradient blobs */}
+      <motion.div
+        animate={{ y: [0, 20, 0], scale: [1, 1.05, 1] }}
+        transition={{ repeat: Infinity, duration: 8 }}
+        className="absolute -top-20 -left-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{ y: [0, -20, 0], scale: [1, 1.1, 1] }}
+        transition={{ repeat: Infinity, duration: 10 }}
+        className="absolute -bottom-24 -right-20 w-72 h-72 bg-indigo-400/20 rounded-full blur-2xl"
+      />
+
       <form
         onSubmit={handleLogin}
-        className="relative z-10 bg-overlay_Dark/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl w-full max-w-md border border-white/10"
+        className="relative z-10 bg-overlay_Dark/80 backdrop-blur-lg p-6 sm:p-8 rounded-2xl shadow-xl w-full sm:max-w-md border border-white/10"
       >
-        <h1 className="text-3xl font-bold text-center text-primary mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-6">
           Login to Ingroove
         </h1>
 
@@ -57,7 +66,10 @@ const LoginPage = () => {
           <p className="text-red-500 mb-4 text-center text-sm">{error}</p>
         )}
 
-        <label className="block mb-2 text-secondaryText">Email</label>
+        {/* Email */}
+        <label className="block mb-2 text-secondaryText text-sm sm:text-base">
+          Email
+        </label>
         <input
           type="email"
           value={email}
@@ -67,7 +79,10 @@ const LoginPage = () => {
           required
         />
 
-        <label className="block mb-2 text-secondaryText">Password</label>
+        {/* Password */}
+        <label className="block mb-2 text-secondaryText text-sm sm:text-base">
+          Password
+        </label>
         <input
           type="password"
           value={password}
@@ -77,6 +92,7 @@ const LoginPage = () => {
           required
         />
 
+        {/* Submit button */}
         <button
           type="submit"
           className="w-full bg-gradient-to-r from-primary to-indigo-500 text-white p-3 rounded-lg hover:opacity-90 transition flex justify-center items-center shadow-md"
@@ -85,7 +101,8 @@ const LoginPage = () => {
           {loading ? "Logging in..." : "Login"}
         </button>
 
-        <div className="mt-6 flex justify-between text-sm text-secondaryText">
+        {/* Links */}
+        <div className="mt-6 flex flex-col sm:flex-row sm:justify-between gap-3 text-sm text-secondaryText text-center sm:text-left">
           <a href="/register" className="hover:text-primary transition">
             Don’t have an account? Sign up
           </a>

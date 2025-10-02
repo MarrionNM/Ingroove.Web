@@ -16,7 +16,6 @@ import EventsPage from "./pages/Dashboard/EventsPage";
 import WalletPage from "./pages/Dashboard/WalletPage";
 import ReportsPage from "./pages/Dashboard/ReportsPage";
 
-
 function App() {
   const [darkMode, setDarkMode] = useState(true); // default dark theme
 

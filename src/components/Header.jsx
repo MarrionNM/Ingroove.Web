@@ -25,9 +25,14 @@ const Header = () => {
     <header className="fixed w-full z-50 shadow-md backdrop-blur-md bg-gradient-to-br from-background via-background/80 to-background">
       <div className="max-w-6xl mx-auto flex justify-between items-center py-4 px-6 relative">
         {/* Logo */}
-        <Link to="/" className="text-primary font-extrabold text-2xl tracking-tight">
-          Ingroove
+        <Link to="/" className="flex items-center">
+          <img
+            src="/logo.svg"
+            alt="Ingroove Logo"
+            className="h-10 w-auto object-contain"
+          />
         </Link>
+
 
         {/* Desktop nav */}
         <nav ref={navRef} className="hidden md:flex gap-8 items-center relative font-medium">
